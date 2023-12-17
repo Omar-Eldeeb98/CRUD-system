@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD System</title>
+    <!-- goole fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet" />
+    <!-- fontawesone -->
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- main styling -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body class="">
+    <section id="crud_section" class="bg-black">
+      <div class="container-fluid">
+        <div class="row justify-content-evenly">
+          <div class="col-md-5 py-4 bg-dark px-4 h-100">
+            <h1 class="text-center pt-2">
+              <span class="text-primary">C</span>
+              <span class="text-success">R</span>
+              <span class="text-warning">U</span>
+              <span class="text-danger">D</span>
+              System
+            </h1>
+            <div class="crud_content">
+              <label
+                for="productNameInput"
+                class="text-uppercase my-2 text-white"
+                >Product Name:</label
+              >
+              <input
+                oninput="productNameValidation()"
+                type="text"
+                name="Product Name"
+                id="productNameInput"
+                class="form-control"
+                placeholder="Enter Product Name" />
+
+              <p
+                id="pNameAlert"
+                class="alert alert-danger d-none d-flex justify-content-between align-items-center">
+                <span>Invalid Product Name </span>
+                <i class="fa-solid fa-circle-exclamation"></i>
+              </p>
+
+              <!-- <label
+                for="productImageInput"
+                class="text-uppercase my-2 text-white"
+                >Upload Image:</label
+              >
+
+              <input
+                type="file"
+                name="Product Image"
+                id="productImageInput"
+                class="form-control"
+                accept="image/*" /> -->
+
+              <label
+                for="productPriceInput"
+                class="text-uppercase my-2 text-white"
+                >Product Price:</label
+              >
+              <input
+                oninput="productPriceValidation()"
+                type="number"
+                name="Product Price"
+                id="productPriceInput"
+                class="form-control"
+                placeholder="Enter Product Price" />
+              <p
+                id="pPriceAlert"
+                class="alert alert-danger d-none d-flex justify-content-between align-items-center">
+                <span>Invalid Product Price  </span>
+                <i class="fa-solid fa-circle-exclamation"></i>
+              </p>
+              <label
+                for="productCategoryInput"
+                class="text-uppercase my-2 text-white"
+                >Product Category:</label
+              >
+              <input
+                oninput="productCategoryValidation()"
+                type="text"
+                name="Product Category"
+                id="productCategoryInput"
+                class="form-control"
+                placeholder="Enter Product Category" />
+              <p
+                id="pCategoryAlert"
+                class="alert alert-danger d-none d-flex justify-content-between align-items-center">
+                <span>Invalid Product Category </span>
+                <i class="fa-solid fa-circle-exclamation"></i>
+              </p>
+              <label
+                for="productDescriptionInput"
+                class="text-uppercase my-2 text-white"
+                >Product Description:</label
+              >
+              <textarea
+                oninput="productDescriptionValidation()"
+                name="product description"
+                id="productDescriptionInput"
+                class="form-control"
+                placeholder="Enter Product Description"></textarea>
+              <p
+                id="pDescriptionAlert"
+                class="alert alert-danger d-none d-flex justify-content-between align-items-center">
+                <span>Invalid Product Description </span>
+                <i class="fa-solid fa-circle-exclamation"></i>
+              </p>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <button
+                    id="addButton"
+                    onclick="addProduct()"
+                    class="btn btn-outline-primary mt-4 w-100 py-2">
+                    Add Product
+                    <i class="fa-solid fa-download fa-beat-fade ms-2"></i>
+                  </button>
+                  <button
+                    onclick="updateProduct()"
+                    id="updateButton"
+                    class="d-none btn btn-outline-warning mt-4 w-100 py-2">
+                    Update Product
+                    <i class="fa-solid fa-pen-to-square fa-beat ms-2"></i>
+                  </button>
+                </div>
+
+                <div class="col-md-6">
+                  <button
+                    onclick="deleteAllProducts()"
+                    class="btn btn-outline-danger w-100 mt-4 py-2">
+                    Delete All Products <i class="fa-solid fa-trash ms-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table__ col-md-6 py-4 bg-dark px-3 rounded-bottom-2 mb-3">
+            <div class="search_container">
+              <input
+                oninput="searchProduct()"
+                type="text"
+                name="search"
+                id="searchInput"
+                placeholder="Search By Name Or Category : "
+                class="form-control w-75 mx-auto" />
+              <div onclick="clearSearchInput()" class="icon_container">
+                <i class="fa-solid fa-xmark"></i>
+              </div>
+            </div>
+            <div class="data_container">
+              <table class="table text-center table-bordered table-striped">
+                <thead class="table-success">
+                  <tr>
+                    <th class="">#</th>
+                    <th class="">Name</th>
+                    <!-- <th class="">Image</th> -->
+                    <th class="">Price</th>
+                    <th class="">Category</th>
+                    <th class="">Desc</th>
+                    <th class="">Action</th>
+                  </tr>
+                </thead>
+
+                <tbody id="tableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- bootstrab js behaviuor -->
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <!-- main javascript file -->
+    <script src="./js/main.js"></script>
+  </body>
+</html>
